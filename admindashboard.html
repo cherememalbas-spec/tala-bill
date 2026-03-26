@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TALABILL | Admin Dashboard</title>
+    <style>
+        :root {
+            --sidebar-bg: #1e293b;
+            --main-bg: #f8fafc;
+            --accent: #6366f1;
+            --text-main: #334155;
+            --text-light: #94a3b8;
+            --white: #ffffff;
+            --success: #10b981;
+        }
+
+        body { 
+            display: flex; 
+            margin: 0; 
+            font-family: 'Inter', -apple-system, sans-serif; 
+            background-color: var(--main-bg);
+            color: var(--text-main);
+        }
+        
+        /* Sidebar Navigation */
+        .sidebar { 
+            width: 260px; 
+            background: var(--sidebar-bg); 
+            color: white; 
+            height: 100vh; 
+            padding: 30px 20px;
+            position: fixed;
+            box-shadow: 4px 0 10px rgba(0,0,0,0.05);
+        }
+
+        .sidebar h2 { 
+            font-size: 1.5rem; 
+            letter-spacing: 2px; 
+            margin-bottom: 40px; 
+            color: var(--accent);
+            text-align: center;
+        }
+
+        .sidebar a { 
+            display: block; 
+            color: #cbd5e1; 
+            text-decoration: none; 
+            padding: 12px 15px; 
+            margin-bottom: 8px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover { 
+            background: rgba(255,255,255,0.1); 
+            color: white; 
+        }
+
+        /* Main Layout */
+        .main-content { 
+            margin-left: 260px; 
+            padding: 40px; 
+            flex-grow: 1;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        h1 { font-size: 1.8rem; font-weight: 700; margin: 0; }
+
+        /* Search Bar Styling */
+        .search-container {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+            margin-bottom: 30px;
+        }
+
+        .search-form { display: flex; gap: 10px; }
+
+        .search-input {
+            flex-grow: 1;
+            padding: 12px 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .search-input:focus { border-color: var(--accent); }
+
+        .search-button {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* Alert Styling */
+        .alert-box {
+            padding: 15px;
+            margin-bottom: 25px;
+            background-color: #ecfdf5;
+            color: var(--success);
+            border-left: 5px solid var(--success);
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        /* Table Styling */
+        .table-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+        }
+
+        table { width: 100%; border-collapse: collapse; }
+        
+        th { 
+            background: #f1f5f9; 
+            color: var(--text-light); 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            font-size: 0.75rem;
+            padding: 15px 20px;
+        }
+
+        td { padding: 18px 20px; border-bottom: 1px solid #f1f5f9; }
+
+        .btn-edit { color: var(--accent); text-decoration: none; margin-right: 15px; font-weight: 600; }
+        .btn-delete { color: #ef4444; text-decoration: none; font-weight: 600; }
+
+        .add-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-top: 25px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .add-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>TALABILL</h2>
+        <a href="/admindashboard">Dashboard</a>
+        <a href="/invoice">Invoice</a>
+        <a href="/payment">Payment</a>
+        <a href="/balance">Balance</a>
+        <a href="/report">Reports</a>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <h1>Admin Dashboard</h1>
+            <a href="/add_customer" class="add-btn">+ Add Customer</a>
+        </header>
+
+        {% if success_msg %}
+            <div class="alert-box">
+                {{ success_msg }}
+            </div>
+        {% endif %}
+
+        <div class="search-container">
+            <form action="{{ url_for('admindashboard') }}" method="GET" class="search-form">
+                <input type="text" 
+                    name="search" 
+                    class="search-input"
+                    placeholder="Search by ID or Name..." 
+                    value="{{ request.args.get('search', '') }}">
+                
+                <button type="submit" class="search-button">Search</button>
+                
+                {% if request.args.get('search') %}
+                    <a href="{{ url_for('admindashboard') }}" style="color: var(--text-light); align-self: center; margin-left: 10px;">Clear</a>
+                {% endif %}
+            </form>
+        </div>
+
+        <div class="table-card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Contact</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in customers %}
+                    <tr>
+                        <td><strong>#{{ c.get_id() }}</strong></td>
+                        <td>{{ c.get_name() }}</td>
+                        <td>{{ c.get_contact() }}</td>
+                        <td>
+                            <a href="/edit_customer/{{ c.get_id() }}" class="btn-edit">Edit</a>
+                            <a href="/delete/{{ c.get_id() }}" class="btn-delete" onclick="return confirm('Delete this customer?')">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

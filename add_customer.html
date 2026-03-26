@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Customer</title>
+    <style>
+        /* Shared styles from your dashboard */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fdf6f0; /* Soft Peach */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* The Form Container (Card Look) */
+        .form-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 {
+            color: #9ab7d3; /* Soft Blue */
+            margin-top: 0;
+            text-align: center;
+            border-bottom: 2px solid #f0f4f7;
+            padding-bottom: 10px;
+        }
+
+        /* Input Field Styling */
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #e1e8ed;
+            border-radius: 8px;
+            box-sizing: border-box; /* Important: keeps padding inside the width */
+            font-size: 14px;
+            background-color: #fafafa;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #b8e1dd; /* Mint highlight on click */
+            background-color: #ffffff;
+        }
+
+        /* Button Styling */
+        button {
+            width: 100%;
+            background-color: #b8e1dd; /* Pastel Mint */
+            color: #444;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 15px;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+
+        button:hover {
+            background-color: #a4d4cf;
+        }
+
+        button:active {
+            transform: scale(0.98); 
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #9ab7d3;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="form-container">
+        <h2>Add Customer</h2>
+
+        <form action="{{ url_for('add_customer') }}" method="POST">
+            <input name="name" placeholder="Customer Name" required>
+            <input name="email" placeholder="Email" required>
+            <input name="contact" placeholder="Contact" required>
+            
+            <button type="submit">Save Customer</button>
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TALABILL - Billing System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #b8e1dd 0%, #f7d9d9 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            padding: 60px 40px;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+        }
+
+        h1 {
+            color: #217ace;
+            font-size: 48px;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            color: #9ab7d3;
+            font-size: 18px;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .description {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            text-align: left;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #217ace;
+        }
+
+        .features {
+            margin: 40px 0;
+            text-align: left;
+        }
+
+        .feature-group {
+            margin-bottom: 30px;
+        }
+
+        .feature-group h3 {
+            color: #217ace;
+            font-size: 18px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-group h3:before {
+            content: ">";
+            color: #2e7d32;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding-left: 30px;
+        }
+
+        .feature-list li {
+            color: #666;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #2e7d32;
+            font-weight: bold;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-login {
+            background-color: #217ace;
+            color: white;
+        }
+
+        .btn-login:hover {
+            background-color: #1a56a0;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(33, 122, 206, 0.3);
+        }
+
+        .btn-signup {
+            background-color: #2e7d32;
+            color: white;
+        }
+
+        .btn-signup:hover {
+            background-color: #1b5e20;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(46, 125, 50, 0.3);
+        }
+
+        .divider {
+            color: #ccc;
+            margin: 30px 0;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            .buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>TALABILL</h1>
+        <p class="subtitle">Professional Billing System</p>
+
+        <div class="description">
+            Welcome to TALABILL - Your complete solution for managing customers, creating invoices, and tracking payments efficiently.
+        </div>
+
+        <div class="features">
+            <div class="feature-group">
+                <h3>Admin Features</h3>
+                <ul class="feature-list">
+                    <li>Manage customers (Add, Edit, Delete)</li>
+                    <li>Create and manage invoices</li>
+                    <li>View all transactions</li>
+                    <li>View comprehensive reports</li>
+                </ul>
+            </div>
+
+            <div class="feature-group">
+                <h3>Staff Features</h3>
+                <ul class="feature-list">
+                    <li>Create invoices</li>
+                    <li>Record payments</li>
+                    <li>View transaction history</li>
+                    <li>Track invoice balances</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <a href="/login" class="btn btn-login">Sign In</a>
+            <a href="/signup" class="btn btn-signup">Create Account</a>
+        </div>
+
+        <div class="divider">
+            or use<a href="/forgot_password" style="color: #217ace; text-decoration: none; margin-left: 5px;"><strong>Forgot Password</strong></a>
+        </div>
+    </div>
+</body>
+</html>
